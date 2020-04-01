@@ -13,6 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: install libuuid-devel
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libuuid1 uuid-dev
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
     - name: install openssl
@@ -30,8 +34,6 @@ jobs:
            ./buildconf
            LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
            make
-    - name: install libuuid-devel
-      run: sudo apt-get install libuuid1 uuid-dev
     - name: configure
       run: cmake -DCMAKE_BUILD_TYPE=release -S src -B build
     - name: build
