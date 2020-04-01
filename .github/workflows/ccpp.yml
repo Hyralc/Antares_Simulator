@@ -16,4 +16,17 @@ jobs:
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
     - name: install openssl
-      run: cd src/ext/openssl && ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared && make depend && make && make install
+      run: |
+           cd src/ext/openssl 
+           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared 
+           make depend 
+           make 
+           make install
+    - name: submodule update curl
+      run: git submodule update --init --recursive -- src/ext/libcurl
+    - name: install openssl
+      run: |
+           cd src/ext/libcurl
+           ./buildconf
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
+           make
