@@ -24,9 +24,18 @@ jobs:
            make install
     - name: submodule update curl
       run: git submodule update --init --recursive -- src/ext/libcurl
-    - name: install openssl
+    - name: install curl
       run: |
            cd src/ext/libcurl
            ./buildconf
            LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
            make
+    - name: show gcc version
+      run: gcc -v
+    - name: configure
+      run: cmake -DCMAKE_BUILD_TYPE=release -S src -B build
+    - name: build
+      run: |
+           cd build
+           make antares-7.1-solver
+
