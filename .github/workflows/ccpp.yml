@@ -38,7 +38,7 @@ jobs:
            LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
            make
     - name: configure
-      run: cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_AR=gcc-ar -DCMAKE_RANLIB=gcc-ranlib -S src -B build
+      run: cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_AR=/usr/bin/gcc-ar -DCMAKE_RANLIB=/usr/bn/gcc-ranlib -S build -B build
     - name: build
       run: |
            cd build
