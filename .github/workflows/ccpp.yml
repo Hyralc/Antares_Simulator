@@ -26,16 +26,19 @@ jobs:
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libssh2-1 libssh2-1-dev
+           sudo ln -s /usr/lib/x86_64-linux-gnu/libssh2.so.1 /usr/lib/x86_64-linux-gnu/libssh2.so
            
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libidn2 libidn2-dev
+           sudo ln -s /usr/lib/x86_64-linux-gnu/libidn2.so.0 /usr/lib/x86_64-linux-gnu/libidn2.so
            
     - name: install libidn11-dev
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libidn11 libidn11-dev
+           sudo ln -s /lib/x86_64-linux-gnu/libidn.so.11 /lib/x86_64-linux-gnu/libidn.so
            
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
