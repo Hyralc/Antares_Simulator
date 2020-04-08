@@ -19,6 +19,7 @@ jobs:
       
     - name: install libuuid-devel
       run: |
+           echo "VAR ANTARES_SRC = $ANTARES_SRC"
            sudo apt-get update --fix-missing
            sudo apt-get install libuuid1 uuid-dev
            
