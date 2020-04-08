@@ -51,9 +51,10 @@ jobs:
       run: git submodule update --init --recursive -- src/ext/libcurl
     - name: install curl
       run: |
+           ANTARES_SRC = `pwd`
            cd src/ext/libcurl
            ./buildconf
-           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="src/ext/openssl/release-x86_64"
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
            make
     - name: configure
       run: |
