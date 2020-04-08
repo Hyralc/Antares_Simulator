@@ -19,24 +19,23 @@ jobs:
       
     - name: install libuuid-devel
       run: |
-           echo "VAR ANTARES_SRC = $ANTARES_SRC"
            sudo apt-get update --fix-missing
            sudo apt-get install libuuid1 uuid-dev
            
     - name: install libssh2-1-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install -y libssh2-1
+           sudo apt-get install libssh2-1
            
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install -y libidn2-0
+           sudo apt-get install libidn2-dev
            
     - name: install libidn11-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install -y libidn11
+           sudo apt-get install libidn11 libidn11-dev
            sudo ln -s /lib/x86_64-linux-gnu/libidn.so.11 /lib/x86_64-linux-gnu/libidn.so
            
     - name: submodule update openssl
@@ -54,13 +53,13 @@ jobs:
       run: |
            cd src/ext/libcurl
            ./buildconf
-           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="src/ext/openssl/release-x86_64"
            make
     - name: configure
       run: |
-           cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_AR=/usr/bin/gcc-ar -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -S src -B src
+           cd src
+           cmake -DCMAKE_BUILD_TYPE=release .
     - name: build
       run: |
            cd src
            make antares-7.1-solver
-
