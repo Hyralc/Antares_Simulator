@@ -26,7 +26,6 @@ jobs:
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libssh2-1 libssh2-1-dev
-           sudo ln -s /usr/lib/x86_64-linux-gnu/libssh2.so.1 /usr/lib/x86_64-linux-gnu/libssh2.so
            
     - name: install libidn2-dev
       run: |
