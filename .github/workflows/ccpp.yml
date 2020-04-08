@@ -28,6 +28,10 @@ jobs:
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libidn2-dev
+    - name: install libidn11-dev
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libidn11-dev
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
     - name: install openssl
