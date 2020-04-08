@@ -16,22 +16,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: install libuuid-devel
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libuuid1 uuid-dev
+           
     - name: install libssh2-1-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libssh2-1-dev
+           sudo apt-get install libssh2-1 libssh2-1-dev
+           
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libidn2-dev
+           sudo apt-get install libidn2 libidn2-dev
+           
     - name: install libidn11-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libidn11-dev
+           sudo apt-get install libidn11 libidn11-dev
+           
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
     - name: install openssl
