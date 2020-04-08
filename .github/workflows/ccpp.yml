@@ -57,7 +57,6 @@ jobs:
            make
     - name: configure
       run: |
-           cd src
            cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_AR=/usr/bin/gcc-ar -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -S src -B src
     - name: build
       run: |
