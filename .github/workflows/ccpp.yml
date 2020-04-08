@@ -25,17 +25,17 @@ jobs:
     - name: install libssh2-1-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libssh2-1 libssh2-1-dev
+           sudo apt-get install -y libssh2-1
            
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libidn2-dev
+           sudo apt-get install -y libidn2-0
            
     - name: install libidn11-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libidn11 libidn11-dev
+           sudo apt-get install -y libidn11
            sudo ln -s /lib/x86_64-linux-gnu/libidn.so.11 /lib/x86_64-linux-gnu/libidn.so
            
     - name: submodule update openssl
@@ -58,7 +58,7 @@ jobs:
     - name: configure
       run: |
            cd src
-           cmake -DCMAKE_BUILD_TYPE=release .
+           cmake -DCMAKE_BUILD_TYPE=release -DCMAKE_AR=/usr/bin/gcc-ar -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -S src -B src
     - name: build
       run: |
            cd src
