@@ -20,6 +20,18 @@ jobs:
       run: |
            sudo apt-get update --fix-missing
            sudo apt-get install libuuid1 uuid-dev
+    - name: install libssh2-dev
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libssh2-dev
+    - name: install libidn2-dev
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libidn2-dev
+    - name: install libidn-dev
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libidn-dev
     - name: submodule update openssl
       run: git submodule update --init --recursive -- src/ext/openssl
     - name: install openssl
