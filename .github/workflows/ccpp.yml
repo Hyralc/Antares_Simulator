@@ -30,7 +30,7 @@ jobs:
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libidn2 libidn2-dev
+           sudo apt-get install libidn2-dev
            sudo ln -s /usr/lib/x86_64-linux-gnu/libidn2.so.0 /usr/lib/x86_64-linux-gnu/libidn2.so
            
     - name: install libidn11-dev
