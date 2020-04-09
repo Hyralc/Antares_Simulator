@@ -54,7 +54,7 @@ jobs:
       
     - name: install curl
       run: |
-           apt list --installed grep | "idn2"
+           apt list --installed | grep "idn2"
            cd src
            ANTARES_SRC=`pwd`
            echo $ANTARES_SRC
