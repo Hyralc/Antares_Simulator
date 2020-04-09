@@ -44,7 +44,7 @@ jobs:
     - name: install openssl
       run: |
            cd src/ext/openssl 
-           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared --without-ssl
+           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared
            make depend 
            make 
            make install
@@ -58,7 +58,7 @@ jobs:
            ANTARES_SRC=`pwd`
            cd ext/libcurl
            ./buildconf
-           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --without-ssl
            make
            
     - name: configure
