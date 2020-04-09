@@ -54,8 +54,8 @@ jobs:
       
     - name: install curl
       run: |
+           apt list --installed
            cd src
-           ANTARES_SRC=`pwd`
            cd ext/libcurl
            ./buildconf
            LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --without-ssl
