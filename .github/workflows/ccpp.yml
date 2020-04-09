@@ -16,6 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: test install libcurl4-gnutls-dev
+      run: |
+        sudo apt-get update --fix-missing
+        sudo apt-get install libcurl4-gnutls-dev
       
     - name: install libuuid-devel
       run: |
