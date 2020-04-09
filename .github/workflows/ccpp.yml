@@ -44,7 +44,7 @@ jobs:
     - name: install openssl
       run: |
            cd src/ext/openssl 
-           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared 
+           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared --without-ssl
            make depend 
            make 
            make install
