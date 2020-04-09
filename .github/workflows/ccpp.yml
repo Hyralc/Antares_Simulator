@@ -20,13 +20,8 @@ jobs:
     - name: install libuuid-devel
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libuuid1 uuid-dev
-           
-    - name: install libssh2-1-dev
-      run: |
-           sudo apt-get update --fix-missing
-           sudo apt-get install libssh2-1 libssh2-1-dev
-           
+           sudo apt-get install libuuid1 uuid-dev          
+         
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
