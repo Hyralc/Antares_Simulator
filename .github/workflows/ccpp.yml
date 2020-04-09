@@ -19,8 +19,6 @@ jobs:
       
     - name: install libuuid-devel
       run: |
-           ANTARES_SRC=`pwd`
-           echo "antares_src var = $ANTARES_SRC"
            sudo apt-get update --fix-missing
            sudo apt-get install libuuid1 uuid-dev
            
@@ -56,11 +54,11 @@ jobs:
       
     - name: install curl
       run: |
+           cd src
            ANTARES_SRC=`pwd`
-           cd src/ext/libcurl
+           cd ext/libcurl
            ./buildconf
-           ls "$ANTARES_SRC/src/ext/openssl/release-x86_64"
-           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/src/ext/openssl/release-x86_64"
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
            make
            
     - name: configure
