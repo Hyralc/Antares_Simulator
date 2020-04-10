@@ -16,17 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: test install libcurl4-gnutls-dev
-      run: |
-        sudo apt-get update --fix-missing
-        sudo apt-get install libcurl4-gnutls-dev
       
     - name: install libuuid-devel
       run: |
            sudo apt-get update --fix-missing
-           sudo apt-get install libuuid1 uuid-dev          
-         
+           sudo apt-get install libuuid1 uuid-dev
+           
+    - name: install libssh2-1-dev
+      run: |
+           sudo apt-get update --fix-missing
+           sudo apt-get install libssh2-1 libssh2-1-dev
+           
     - name: install libidn2-dev
       run: |
            sudo apt-get update --fix-missing
@@ -44,7 +44,7 @@ jobs:
     - name: install openssl
       run: |
            cd src/ext/openssl 
-           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared
+           ./config --prefix=$PWD/release-x86_64 no-asm no-mdc2 no-rc5 no-shared 
            make depend 
            make 
            make install
@@ -54,10 +54,8 @@ jobs:
       
     - name: install curl
       run: |
-           apt list --installed | grep "idn2"
            cd src
            ANTARES_SRC=`pwd`
-           echo $ANTARES_SRC
            cd ext/libcurl
            ./buildconf
            LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64"
