@@ -58,7 +58,7 @@ jobs:
            ANTARES_SRC=`pwd`
            cd ext/libcurl
            ./buildconf
-           LIBS="-lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64" --without-libidn --without-libssh2 --without-zlib
+           LIBS="-ldl -lpthread" ./configure --disable-shared --disable-ldap --with-ssl="$ANTARES_SRC/ext/openssl/release-x86_64" --without-libidn --without-libssh2 --without-zlib
            make
            
     - name: configure
