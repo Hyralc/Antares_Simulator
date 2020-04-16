@@ -156,7 +156,7 @@ macro(solver_app name swap)
 	if(NOT MSVC)
 		#-Wl,--start-group ${ANTARES_SOLVER_LIBS} -Wl,--end-group)
 		target_link_libraries(${exec_name} ${ANTARES_SOLVER_LIBS} uuid -ldl)
-		target_link_libraries(${exec_name}  uuid rt -ldl)
+		target_link_libraries(${exec_name}  uuid dl rt -ldl)
 	else()
 		target_link_libraries(${exec_name} ${ANTARES_SOLVER_LIBS})
 		target_link_libraries(${exec_name} ole32 rpcrt4) # uuid
